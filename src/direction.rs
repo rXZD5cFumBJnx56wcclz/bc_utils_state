@@ -17,7 +17,7 @@ impl DIRECTION {
 }
 
 impl UtilState for DIRECTION {
-    fn util(&self, _: &TradeState, src: &[f64], _: &[Signal]) -> f64 {
+    fn util(&self, state: &TradeState, src: &[f64], signals: &[Signal], s: &SETTINGS_TRADE) -> f64 {
         if let Some(direction) = self.direction {
             direction
         } else {
@@ -29,12 +29,12 @@ impl UtilState for DIRECTION {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::prelude_tests::prelude::*;
+    use bc_test_kit::prelude::*;
 
     #[test]
     fn util_res_1() {
         assert_eq_pr!(
-            DIRECTION::default().util(&TradeState::new(100.), &[0.9, 1.,], &[]),
+            DIRECTION::default().util(&TradeState::new(100.), &[0.9, 1.,], &[], &TRADE),
             1.
         );
     }
