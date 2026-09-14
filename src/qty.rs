@@ -39,7 +39,13 @@ impl QTY {
 }
 
 impl UtilState for QTY {
-    fn util(&self, state: &TradeState, src: &[f64], signals: &[Signal], s: &SETTINGS_TRADE) -> f64 {
+    fn util(
+        &self,
+        state: &TradeState,
+        _src: &[f64],
+        signals: &[Signal],
+        s: &SETTINGS_TRADE,
+    ) -> f64 {
         signals
             .first()
             .copied()
@@ -70,7 +76,7 @@ mod tests {
     fn util_res_1() {
         assert_eq_pr!(
             QTY::new(1., 0., 0, 0.1, 1.,).util(
-                &TradeState::new(100.,),
+                &TradeState::new(Capital(100.),),
                 &[],
                 &[Signal::new(1., 1.)],
                 &TRADE
