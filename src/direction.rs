@@ -36,6 +36,8 @@ impl UtilState for DIRECTION {
 mod tests {
     use super::*;
     use bc_test_kit::prelude::*;
+    use bc_utils_lg::structs::capital::Capital;
+    use bc_utils_lg::test_state::prelude::*;
 
     #[test]
     fn util_res_1() {
